@@ -1,5 +1,6 @@
 package com.example.apicrudexample.component;
 
+import com.example.apicrudexample.Pojo.ComboboxModel;
 import com.example.apicrudexample.Pojo.UserModel;
 import org.apache.catalina.User;
 import org.springframework.stereotype.Component;
@@ -11,8 +12,8 @@ import java.util.Random;
 
 @Component
 public class ExampleComponent {
-    public List<String> myList = new ArrayList<>();
     public List<UserModel> listUser = new ArrayList<>();
+    public List<ComboboxModel> listLevel = new ArrayList<>();
 
     ExampleComponent() {
         for(int i = 0; i< 96; i++) {
@@ -25,18 +26,19 @@ public class ExampleComponent {
             user.setBirthDate(new Date());
             listUser.add(user);
         }
-    }
 
-    public void add(String value) {
-        myList.add(value);
-    }
+        for(int i = 0; i<= 30; i++) {
+            ComboboxModel combo = new ComboboxModel();
 
-    List<String> getMyList() {
-        return myList;
-    }
+            if (i==0) {
+                combo.setText("Tài khoản cấp "+ i);
+            } else {
+                combo.setText("Admin cấp cao");
+            }
+            combo.setValue(i);
 
-    List<UserModel> getListUser() {
-        return listUser;
+            listLevel.add(combo);
+        }
     }
 }
 
